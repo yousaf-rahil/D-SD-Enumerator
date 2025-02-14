@@ -1,1 +1,4 @@
-# D-SD-Enumerator
+D-SD Enumerator are two python scripts, to enumerate Domain and Sub-domain. 
+***NOTE! IT WILL PRODUCE BEST RESULTS IN VS CODE***
+dns_enumorator script will give the results in the terminal. You can change the target domain by changing the variable target_domain  (on line 30). Make sure to add the full domain name (for example youtube.com)
+sub_domain_enumorator will make a txt file and save the results in the file. To change the target domain, put the domain in target variable in line 17. Make sure to have subdomains.txt file in the same location as the script. In case the script is not printing descovered domains in the .txt file, delete the existing txt file and let the program make the newer one. One good practice would be to delete or change the location of discovered_subdomains.txt and let the script create a new file.
