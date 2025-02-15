@@ -4,7 +4,6 @@ import socket                                    #impoorting sockets to check in
 import sys                                       #to terminate the program in case of no internet    
 import requests
 import threading
-
 #checking internet connection
 def connection_check():
     socket.create_connection(("8.8.8.8", 53), timeout=5)
@@ -14,7 +13,7 @@ if not connection_check():
     sys.exit(1)
 else:
 #main body of program
-    target = "youtube.com"
+    target = "riphah.edu.pk"
 
     with open("subdomains.txt") as file:            #opening a dictionary in which a list of subdomains is written
         subdomains = file.read().splitlines()       #creating a variable and storing the data in it. splitlines function converts the whole data as a list
@@ -26,11 +25,14 @@ else:
     def sub_domain(subdomains):                     #here we are sending the whole list to the funciton. And the function will read it(items of list) one by one
         url = f"http://{subdomains}.{target}"       #making a variable "url" by combining subdomain and domain
         try:                                        #try and except function for error handling
-            requests.get(url, timeout= 2)                       #it will send a request to the url we have found out (ping the url)
+            requests.get(url)                       #it will send a request to the url we have found out (ping the url)
         except requests.ConnectionError:            #in case there is an error, it will pass to next one
             pass
         except requests.Timeout:
             pass
+        except KeyboardInterrupt:
+            print("\n[!] Detected Ctrl + C. Exiting gracefully...")
+            sys.exit(0)
         else:                                       #if there is no error,, it will print and write url in a file and consle
             print(f"[+] discovered a domain: {url}")
             with lock: 
@@ -46,5 +48,5 @@ else:
     for t1 in thread:
          t1.join()
 with open("discovered_subdomains.txt", 'a') as file:
-    file.write("\n\nThat's All...")
+    file.write("\n\nThat's All...\n\n")
     
