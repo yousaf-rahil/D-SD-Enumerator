@@ -13,7 +13,7 @@ if not connection_check():
     sys.exit(1)
 else:
 #main body of program
-    target = "riphah.edu.pk"
+    target = "youtube.com"
 
     with open("subdomains.txt") as file:            #opening a dictionary in which a list of subdomains is written
         subdomains = file.read().splitlines()       #creating a variable and storing the data in it. splitlines function converts the whole data as a list
